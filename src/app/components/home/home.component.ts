@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {BRoute, BRoutes} from "../../models/baasti-route.model";
-import {Observable} from "rxjs";
 import {CommonModule} from "@angular/common";
 import {AppThumbnailComponent} from "./app-thumbnail/app-thumbnail.component";
 

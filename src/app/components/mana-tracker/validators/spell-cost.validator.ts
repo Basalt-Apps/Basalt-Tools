@@ -1,7 +1,6 @@
 import {FormGroup} from "@angular/forms";
 import {ControlsOf} from "../../../models/controls-of.type";
 import {ManaTrackerSpellSpecForm} from "../models/mana-tracker-spell-spec.form";
-import {calculateSpellCost} from "../functions/calculate-spell-cost.func";
 
 export const SpellCostValidator = (max: number) => {
   console.log('reset', max)
