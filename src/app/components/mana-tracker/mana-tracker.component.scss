@@ -1,0 +1,239 @@
+button {
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  height: 15%;
+  width: 100%;
+
+  img {
+    height: 70%;
+  }
+}
+
+.back {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+
+.help {
+  position: absolute;
+  top: calc(3 * 24px);
+  left: 24px;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-size: 100%;
+  background-repeat: repeat;
+  background-position-y: 20%;
+
+  width: 100vw;
+  height: 100vh;
+
+  .super-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+
+      .level-blessing {
+        display: flex;
+        flex-direction: row;
+
+        .level {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 60px;
+          margin-right: 20px;
+        }
+
+        .blessing {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .blessings {
+            display: flex;
+            flex-direction: row;
+          }
+        }
+      }
+
+      .row-2 {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        width: 100%;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid rgba(0, 0, 0, 1);
+
+        .max-mana {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .extra-mana {
+          display: flex;
+          flex-direction: column;
+          width: 130px;
+        }
+      }
+
+      .row-3 {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        .current {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+
+          .current-display {
+            display: flex;
+            flex-direction: column;
+
+            span {
+              input {
+                width: 60px;
+              }
+
+              span.percent {
+                margin-left: 10px;
+              }
+            }
+          }
+
+          .current-reset {
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .current-reset-2 {
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+
+      .row-5 {
+        display: flex;
+        flex-direction: row;
+
+        .spell-spec-col-1 {
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+        }
+
+        .spell-spec-col-2 {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+
+          margin-left: 20px;
+
+          input {
+            height: 19px;
+            width: 60px;
+
+            &.invalid {
+              border-color: rgba(224, 31, 31, 1);
+            }
+          }
+        }
+      }
+
+      .row-6 {
+        margin-top: 10px;
+      }
+    }
+
+    .row-4 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(0, 0, 0, 1);
+      width: 100%;
+
+      input {
+        width: 100px;
+      }
+
+      button {
+        margin-left: 10px;
+        margin-top: 0;
+      }
+    }
+
+    .display {
+      width: 120px;
+      height: 19px;
+      padding: 1px 2px;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      background: white;
+      border-radius: 1px;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgb(0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}

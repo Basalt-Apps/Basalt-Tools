@@ -1,0 +1,21 @@
+:host {
+  width: 100vw;
+  height: 100vh;
+
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    .app-space {
+      max-width: 1300px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+}

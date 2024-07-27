@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+
+  app-root {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+* {
+  font-family: "Comic Sans MS", Arial, serif;
+}
+

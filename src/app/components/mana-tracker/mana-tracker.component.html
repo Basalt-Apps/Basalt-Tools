@@ -1,0 +1,140 @@
+<div class="title">
+  <img src="title.gif" alt="">
+</div>
+
+<div [routerLink]="['/']"
+    class="back"
+>
+  <img
+    src="arrow-left.svg"
+    alt=""
+    title="Back">
+</div>
+
+<a href="https://discord.com/channels/@me/"
+    class="help"
+>
+  <img
+    src="help.svg"
+    alt=""
+    title="Help">
+</a>
+
+<div class="main" [style.background-image]="'url(\'dnd-background.jpg\')'">
+  <div class="super-form" [style.background-image]="'url(\'parchment.jpg\')'">
+    <form [formGroup]="maxManaForm">
+
+      <div class="level-blessing">
+        <div class="level">
+          <label>Level</label>
+          <input formControlName="level" type="number" min="1" max="20" step="1">
+        </div>
+
+        <div class="blessing">
+          Blessing
+          <div class="blessings">
+            <label><input
+              type="radio"
+              name="blessing"
+              formControlName="blessing"
+              value="none"
+              checked
+            >None</label>
+            <label><input
+              type="radio"
+              name="blessing"
+              formControlName="blessing"
+              value="greed"
+            >Greed</label>
+            <label><input
+              type="radio"
+              name="blessing"
+              formControlName="blessing"
+              value="gluttony"
+            >Gluttony</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="max-mana">
+          <label>Total Max Mana</label>
+          <div class="display">{{maxManaForm.value.maxMana}}</div>
+        </div>
+        <div class="extra-mana">
+          <label>Extra Mana Cap</label>
+          <input formControlName="extraManaMax" type="number" step="1" min="0">
+        </div>
+      </div>
+
+      <div class="row-3">
+        <div class="current">
+          <div class="current-display">
+            <label>Current Mana</label>
+            <span>
+            <input type="number" formControlName="currentMana">
+            / {{maxManaForm.controls.maxMana.value}}
+              <span class="percent">
+                {{
+                Math.floor(100 * maxManaForm.controls.currentMana.value
+                  / maxManaForm.controls.maxMana.value)
+                }}%
+              </span>
+          </span>
+          </div>
+          <div class="current-reset">
+            <button (click)="onTurnEnd()">End Turn</button>
+          </div>
+          <div class="current-reset-2">
+            <button (click)="OnResetMana()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="row-4">
+      <input type="number" [formControl]="addRemoveForm"/>
+      <button (click)="addRemove(1)">Add</button>
+      <button (click)="addRemove(-1)">Remove</button>
+    </div>
+
+    <form [formGroup]="spellSpecForm">
+      <div class="row-5">
+        <div class="spell-spec-col-1">
+          <label>Base Cost Sum</label>
+          <label>Complexity Multiplier</label>
+          <label>Range (ft)</label>
+        </div>
+        <div class="spell-spec-col-2">
+          <input
+            [class.invalid]="spellSpecForm.controls.baseCostSum.invalid"
+            type="number"
+            formControlName="baseCostSum"
+            step="1"
+            min="0">
+          <input
+            [class.invalid]="spellSpecForm.controls.complexity.invalid"
+            type="number"
+            formControlName="complexity"
+            step="0.1"
+            min="1">
+          <input
+            [class.invalid]="spellSpecForm.controls.range.invalid"
+            type="number"
+            formControlName="range"
+            step="1"
+            min="0">
+        </div>
+      </div>
+      <div class="row-6">
+        <div class="cost">
+          <span>Cost: </span>
+          <span
+            [style.color]="spellSpecForm.errors?.['tooMuch'] ? 'red' : 'black'"
+          >{{spellSpecForm.controls.cost.value}}</span>
+        </div>
+        <button (click)="onCastSpell()">Cast Spell</button>
+      </div>
+    </form>
+  </div>
+</div>
