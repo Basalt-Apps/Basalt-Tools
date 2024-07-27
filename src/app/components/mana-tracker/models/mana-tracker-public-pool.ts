@@ -20,3 +20,4 @@ export const publicPoolByLevel: Record<number, number> = {
   19: 800,
   20: 800,
 }
+

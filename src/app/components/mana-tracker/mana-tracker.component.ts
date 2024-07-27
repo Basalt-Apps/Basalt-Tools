@@ -153,6 +153,11 @@ export class ManaTrackerComponent implements OnInit {
         || changes.range
       ) this.recalculateCost()
     });
+
+    this.addRemoveForm.valueChanges.subscribe((value: number) => {
+      if (!value) this.addRemoveForm.setValue(0);
+      if (value < 0) this.addRemoveForm.setValue(0);
+    })
   }
 
   private recalculateCost(): void {
