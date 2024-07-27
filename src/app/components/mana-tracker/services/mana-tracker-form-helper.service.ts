@@ -26,7 +26,7 @@ export class ManaTrackerFormHelperService {
       range: new FormControl<number>(0, {
         nonNullable: true, validators: [Validators.required, Validators.min(0)]
       }),
-      complexity: new FormControl<number>(1, {
+      patterns: new FormControl<number>(1, {
         nonNullable: true, validators: [Validators.required, Validators.min(1)]
       }),
       cost: new FormControl<number>(0, {

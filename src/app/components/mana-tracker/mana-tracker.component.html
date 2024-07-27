@@ -102,7 +102,7 @@
       <div class="row-5">
         <div class="spell-spec-col-1">
           <label>Base Cost Sum</label>
-          <label>Complexity Multiplier</label>
+          <label>Interacting Patterns</label>
           <label>Range (ft)</label>
         </div>
         <div class="spell-spec-col-2">
@@ -113,10 +113,10 @@
             step="1"
             min="0">
           <input
-            [class.invalid]="spellSpecForm.controls.complexity.invalid"
+            [class.invalid]="spellSpecForm.controls.patterns.invalid"
             type="number"
-            formControlName="complexity"
-            step="0.1"
+            formControlName="patterns"
+            step="1"
             min="1">
           <input
             [class.invalid]="spellSpecForm.controls.range.invalid"

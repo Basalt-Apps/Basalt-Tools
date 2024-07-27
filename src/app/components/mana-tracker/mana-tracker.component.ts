@@ -53,20 +53,62 @@ export class ManaTrackerComponent implements OnInit {
     this.maxManaOldValue = this.maxManaForm.getRawValue();
     this.spellSpecOldValue = this.spellSpecForm.getRawValue();
     this.getMaxManaFormChanges().subscribe((changes: Partial<ManaTrackerMaxManaForm>) => {
-      if (changes.level || changes.extraManaMax || changes.blessing) {
-        const controls = this.maxManaForm.controls;
+      if (changes.level !== undefined) {
+        const control = this.maxManaForm.controls.level;
+        const value = control.getRawValue() as number | null;
 
-        const level = changes.level ?? controls.level.getRawValue();
-        const blessing = changes.blessing ?? controls.blessing.getRawValue();
-        const extraManaMax = changes.extraManaMax ?? controls.extraManaMax.getRawValue();
-
-        controls.maxMana.setValue(this.getMaxMana({level, blessing, extraManaMax}))
+        if (!value) {
+          control.setValue(1);
+          return this.recalculateMaxMana()
+        }
+        else if (value < 1 || value > 20) {
+          control.setValue(value < 1 ? 1 : value > 20 ? 20 : value);
+          return this.recalculateMaxMana()
+        }
       }
-      if (changes.maxMana) {
+
+      if (changes.currentMana !== undefined) {
+        const control = this.maxManaForm.controls.currentMana;
+        const value = control.getRawValue() as number | null;
+
+        if (!value || value < 0) {
+          control.setValue(0);
+          return this.recalculateMaxMana()
+        }
+      }
+
+      if (changes.extraManaMax !== undefined) {
+        const control = this.maxManaForm.controls.extraManaMax;
+        let value = control.getRawValue() as number | null;
+
+        if (!value || value < 0) {
+          control.setValue(0);
+          return this.recalculateMaxMana()
+        }
+      }
+
+      if (changes.level
+        || changes.extraManaMax
+        || changes.blessing
+      ) this.recalculateMaxMana()
+
+      if (changes.maxMana !== undefined) {
         const control = this.maxManaForm.controls.currentMana;
         if (control.getRawValue() > changes.maxMana) control.setValue(changes.maxMana)
       }
-      if (changes.currentMana) {
+
+      if (changes.currentMana !== undefined) {
+        const control = this.maxManaForm.controls.currentMana;
+        let value = control.getRawValue() as number | null;
+
+        const max = this.maxManaForm.controls.maxMana.getRawValue();
+        const blessing = this.maxManaForm.controls.blessing.getRawValue();
+
+        if (!value) return control.setValue(0);
+        else if (value < 0) return control.setValue(0);
+        else if (blessing != 'gluttony' && value > max)
+          return control.setValue(max);
+
         this.spellSpecForm.clearValidators();
         this.spellSpecForm.setValidators(SpellCostValidator(changes.currentMana) as ValidatorFn)
         this.spellSpecForm.setValue(this.spellSpecForm.getRawValue())
@@ -74,19 +116,63 @@ export class ManaTrackerComponent implements OnInit {
 
       this.saveValuesToLocalStorage(this.maxManaForm.getRawValue());
     })
+
     this.getSpellSpecFormChanges().subscribe((changes: Partial<ManaTrackerSpellSpecForm>) => {
-      if (changes.complexity || changes.baseCostSum || changes.range) {
-        const controls = this.spellSpecForm.controls;
+      if (changes.range !== undefined) {
+        const control = this.spellSpecForm.controls.range;
+        const value = control.getRawValue();
 
-        const complexity = changes.complexity ?? controls.complexity.getRawValue();
-        const baseCostSum = changes.baseCostSum ?? controls.baseCostSum.getRawValue();
-        const range = changes.range ?? controls.range.getRawValue();
-
-        controls.cost.setValue(calculateSpellCost({complexity, baseCostSum, range}))
+        if (!value || value < 0) {
+          control.setValue(0);
+          return this.recalculateCost()
+        }
       }
-    });
 
-    this.spellSpecForm.valueChanges.subscribe(() => console.log(this.spellSpecForm.errors))
+      if (changes.baseCostSum !== undefined) {
+        const control = this.spellSpecForm.controls.baseCostSum;
+        const value = control.getRawValue();
+
+        if (!value || value < 0) {
+          control.setValue(0);
+          return this.recalculateCost()
+        }
+      }
+
+      if (changes.patterns !== undefined) {
+        const control = this.spellSpecForm.controls.patterns;
+        const value = control.getRawValue();
+
+        if (!value || value < 1) {
+          control.setValue(1);
+          return this.recalculateCost()
+        }
+      }
+
+      if (changes.patterns
+        || changes.baseCostSum
+        || changes.range
+      ) this.recalculateCost()
+    });
+  }
+
+  private recalculateCost(): void {
+    const controls = this.spellSpecForm.controls;
+
+    const complexity = controls.patterns.getRawValue();
+    const baseCostSum = controls.baseCostSum.getRawValue();
+    const range = controls.range.getRawValue();
+
+    controls.cost.setValue(calculateSpellCost({patterns: complexity, baseCostSum, range}))
+  }
+
+  private recalculateMaxMana(): void {
+    const controls = this.maxManaForm.controls;
+
+    const level = controls.level.getRawValue();
+    const blessing = controls.blessing.getRawValue();
+    const extraManaMax = controls.extraManaMax.getRawValue();
+
+    controls.maxMana.setValue(this.getMaxMana({level, blessing, extraManaMax}))
   }
 
   public addRemove(mult: -1 | 1): void {

@@ -1,6 +1,6 @@
 export interface ManaTrackerSpellSpecForm {
   range: number;
-  complexity: number;
+  patterns: number;
   baseCostSum: number;
   cost: number;
 }
