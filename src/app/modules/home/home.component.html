@@ -1,10 +1,15 @@
 <div class="main">
-  <div class="app-space">
-    <basalt-app-thumbnail
-      [app]="app"
-      [routerLink]="app.path"
-      *ngFor="let app of applications"
-    />
-  </div>
+    <div class="title">
+        <img src="basalt-tools-title.gif" alt="">
+    </div>
+    <div class="app-space-space">
+        <div class="app-space">
+            <basalt-app-thumbnail
+                    [app]="app"
+                    [routerLink]="app.path"
+                    *ngFor="let app of applications"
+            />
+        </div>
+    </div>
 </div>
 
