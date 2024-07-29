@@ -4,17 +4,39 @@
 
   .main {
     display: flex;
-    justify-content: center;
+    //justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     width: 100vw;
     height: 100vh;
 
-    .app-space {
-      max-width: 1300px;
+    .title {
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      height: 15%;
+      width: 100%;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .app-space-space {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 85%;
+
+      .app-space {
+        max-width: 1300px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
     }
   }
 
