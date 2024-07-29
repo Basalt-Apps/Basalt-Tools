@@ -19,31 +19,13 @@ export const routes: BasaltRoutes = [
     component: ManaTrackerComponent,
     title: 'Mana Tracker'
   },
-  // {
-  //   path: 'spell-tracker',
-  //   component: WIPComponent,
-  //   title: 'Spell Point Tracker'
-  // },
-  // {
-  //   path: 'WIP',
-  //   component: WIPComponent,
-  //   title: 'WIP'
-  // },
-  // {
-  //   path: 'WIP',
-  //   component: WIPComponent,
-  //   title: 'WIP'
-  // },
-  // {
-  //   path: 'WIP',
-  //   component: WIPComponent,
-  //   title: 'WIP'
-  // },
-  // {
-  //   path: 'WIP',
-  //   component: WIPComponent,
-  //   title: 'WIP'
-  // },
+  {
+    path: 'spell-point-tracker',
+    image: 'spell-point-tracker-thumbnail.gif',
+    background: 'parchment.jpg',
+    component: SpellPointTrackerComponent,
+    title: 'Spell Point Tracker'
+  },
   {
     path: '**',
     redirectTo: '/'
