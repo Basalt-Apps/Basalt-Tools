@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} from "@angular/forms";
-import {ControlsOf} from "../../models/controls-of.type";
 import {ManaTrackerMaxManaForm} from "./models/mana-tracker-form.interface";
 import {ManaTrackerFormHelperService} from "./services/mana-tracker-form-helper.service";
 import {map, Observable} from "rxjs";
@@ -10,9 +9,10 @@ import {SpellCostValidator} from "./validators/spell-cost.validator";
 import {calculateSpellCost} from "./functions/calculate-spell-cost.func";
 import {RouterLink} from "@angular/router";
 import {publicPoolByLevel} from "./models/mana-tracker-public-pool";
+import { ControlsOf } from '../shared/models/controls-of.type';
 
 @Component({
-  selector: 'app-mana-tracker',
+  selector: 'basalt-mana-tracker',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -180,12 +180,12 @@ export class ManaTrackerComponent implements OnInit {
     controls.maxMana.setValue(this.getMaxMana({level, blessing, extraManaMax}))
   }
 
-  public addRemove(mult: -1 | 1): void {
+  public addRemove(multiplier: -1 | 1): void {
     if (this.addRemoveForm.invalid) return;
 
     const change = this.addRemoveForm.getRawValue();
     const old = this.maxManaForm.controls.currentMana.getRawValue();
-    let newValue = old + change * mult;
+    let newValue = old + change * multiplier;
 
     if (newValue < 0) return;
     const max = this.maxManaForm.controls.maxMana.getRawValue();

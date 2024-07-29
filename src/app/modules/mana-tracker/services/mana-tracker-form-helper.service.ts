@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ControlsOf} from "../../../models/controls-of.type";
 import {ManaTrackerMaxManaForm} from "../models/mana-tracker-form.interface";
 import {ManaTrackerSpellSpecForm} from "../models/mana-tracker-spell-spec.form";
+import { ControlsOf } from '../../shared/models/controls-of.type';
 
 @Injectable({
   providedIn: 'root'

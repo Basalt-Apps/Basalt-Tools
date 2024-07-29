@@ -1,15 +1,20 @@
-import {HomeComponent} from "./components/home/home.component";
-import {ManaTrackerComponent} from "./components/mana-tracker/mana-tracker.component";
-import {BRoutes} from "./models/baasti-route.model";
+import {BasaltRoutes} from "./modules/shared/models/baasti-route.model";
+import {
+  ManaTrackerComponent
+} from './modules/mana-tracker/mana-tracker.component';
+import { HomeComponent } from './modules/home/home.component';
+import {
+  SpellPointTrackerComponent
+} from './modules/spell-point-tracker/spell-point-tracker.component';
 
-export const routes: BRoutes = [
+export const routes: BasaltRoutes = [
   {
     path: '',
     component: HomeComponent,
   },
   {
     path: 'mana-tracker',
-    image: 'mana-tracker.gif',
+    image: 'mana-tracker-thumbnail.gif',
     background: 'parchment.jpg',
     component: ManaTrackerComponent,
     title: 'Mana Tracker'

@@ -1,15 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BRoute} from "../../../models/baasti-route.model";
+import { BasaltRoute } from '../../../shared/models/baasti-route.model';
 
 @Component({
-  selector: 'app-app-thumbnail',
+  selector: 'basalt-app-thumbnail',
   standalone: true,
   imports: [],
   templateUrl: './app-thumbnail.component.html',
   styleUrl: './app-thumbnail.component.scss'
 })
 export class AppThumbnailComponent implements OnInit {
-  @Input() app!: BRoute;
+  @Input() app!: BasaltRoute;
 
   ngOnInit(): void {
     console.log(this.app.background)

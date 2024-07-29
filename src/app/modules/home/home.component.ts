@@ -1,18 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
-import {BRoute, BRoutes} from "../../models/baasti-route.model";
 import {CommonModule} from "@angular/common";
-import {AppThumbnailComponent} from "./app-thumbnail/app-thumbnail.component";
+import { BasaltRoute, BasaltRoutes } from '../shared/models/baasti-route.model';
+import {
+  AppThumbnailComponent
+} from './components/app-thumbnail/app-thumbnail.component';
 
 @Component({
-  selector: 'app-home',
+  selector: 'basalt-home',
   standalone: true,
   imports: [CommonModule, AppThumbnailComponent, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  public applications!: BRoutes;
+  public applications!: BasaltRoutes;
 
   constructor(
     private router: Router
@@ -20,8 +22,8 @@ export class HomeComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.applications = (this.router.config as BRoutes)
-      .filter((route: BRoute) => !!route.title)
+    this.applications = (this.router.config as BasaltRoutes)
+      .filter((route: BasaltRoute) => !!route.title)
   }
 
 
