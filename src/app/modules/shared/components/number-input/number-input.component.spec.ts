@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WIPComponent } from './wip.component';
+import { NumberInputComponent } from './number-input.component';
 
-describe('WIPComponent', () => {
-  let component: WIPComponent;
-  let fixture: ComponentFixture<WIPComponent>;
+describe('NumberInputComponent', () => {
+  let component: NumberInputComponent;
+  let fixture: ComponentFixture<NumberInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WIPComponent]
+      imports: [NumberInputComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WIPComponent);
+    fixture = TestBed.createComponent(NumberInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
