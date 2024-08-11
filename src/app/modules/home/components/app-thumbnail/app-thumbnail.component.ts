@@ -8,12 +8,6 @@ import { BasaltRoute } from '../../../shared/models/baasti-route.model';
   templateUrl: './app-thumbnail.component.html',
   styleUrl: './app-thumbnail.component.scss'
 })
-export class AppThumbnailComponent implements OnInit {
+export class AppThumbnailComponent {
   @Input() app!: BasaltRoute;
-
-  ngOnInit(): void {
-    console.log(this.app.background)
-  }
-
-
 }
