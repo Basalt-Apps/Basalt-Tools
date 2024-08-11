@@ -1,1 +1,11 @@
-<p>number-input works!</p>
+<input
+  (input)="input($event.target)"
+  (keyup.enter)="onSubmit()"
+  [step]="step ?? 1"
+  [min]="min ?? null"
+  [max]="max ?? null"
+  [disabled]="(disabled$ | async) ?? false"
+  [value]="value$ | async"
+  type="number"
+  #inputElement
+>
