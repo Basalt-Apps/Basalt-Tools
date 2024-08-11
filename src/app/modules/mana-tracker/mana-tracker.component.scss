@@ -1,3 +1,9 @@
+basalt-number-input {
+  display: block;
+  width: 100%;
+  height: 25px;
+}
+
 button {
 }
 
@@ -78,6 +84,10 @@ button {
           align-items: center;
           width: 60px;
           margin-right: 20px;
+
+          basalt-number-input {
+            width: 54.3px;
+          }
         }
 
         .blessing {
@@ -112,6 +122,10 @@ button {
           display: flex;
           flex-direction: column;
           width: 130px;
+
+          basalt-number-input {
+            width: 100%;
+          }
         }
       }
 
@@ -131,8 +145,9 @@ button {
             flex-direction: column;
 
             span {
-              input {
-                width: 60px;
+              basalt-number-input {
+                width: 68px;
+                display: inline;
               }
 
               span.percent {
@@ -174,9 +189,8 @@ button {
 
           margin-left: 20px;
 
-          input {
-            height: 19px;
-            width: 60px;
+          basalt-number-input {
+            width: 68px;
 
             &.invalid {
               border-color: rgba(224, 31, 31, 1);
@@ -191,7 +205,7 @@ button {
     }
 
     .row-4 {
-      display: flex;
+      display: inline-flex;
       justify-content: center;
       align-items: center;
       margin-top: 10px;
@@ -200,7 +214,7 @@ button {
       border-bottom: 1px solid rgba(0, 0, 0, 1);
       width: 100%;
 
-      input {
+      basalt-number-input {
         width: 100px;
       }
 
@@ -211,8 +225,8 @@ button {
     }
 
     .display {
-      width: 120px;
-      height: 19px;
+      width: 126px;
+      height: 25px;
       padding: 1px 2px;
       border: 1px solid rgba(0, 0, 0, 0.5);
       background: white;

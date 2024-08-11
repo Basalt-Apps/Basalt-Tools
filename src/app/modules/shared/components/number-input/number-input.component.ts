@@ -53,6 +53,7 @@ export class NumberInputComponent implements ControlValueAccessor, OnChanges, On
 
   public writeValue(value: number): void {
     this.value$.next(value);
+    this.fieldChange(value)
   }
 
   public registerOnChange(fn: (value: number) => void): void {
@@ -70,23 +71,25 @@ export class NumberInputComponent implements ControlValueAccessor, OnChanges, On
   public input(target: EventTarget | null) {
     if (!target) return;
     const {value: rawValue} = target as HTMLInputElement;
+
     if (rawValue == '') {
       let newVal = 0;
-      if (this.min && newVal < this.min) newVal = this.min;
-      if (this.max && newVal > this.max) newVal = this.max;
+      if (this.min !== undefined && newVal < this.min) newVal = this.min;
+      if (this.max !== undefined && newVal > this.max) newVal = this.max;
       this.fieldChange(newVal);
     }
+
     let value = +rawValue;
 
-    if (this.min && value < this.min) {
+    if (this.min !== undefined && (value < this.min)) {
       value = this.min
       this.fieldChange(value);
     }
-    if (this.max && value > this.max) {
+    if (this.max !== undefined && value > this.max) {
       value = this.max;
       this.fieldChange(value)
     }
-    if (this.step && +rawValue % this.step !== 0) {
+    if (this.step !== undefined && +rawValue % this.step !== 0) {
       value -= value % this.step;
       const newValue = +rawValue - +rawValue % this.step;
       this.fieldChange(newValue)
@@ -97,8 +100,8 @@ export class NumberInputComponent implements ControlValueAccessor, OnChanges, On
     this.writeValue(value);
   }
 
-  public fieldChange(num: number): void {
-    this.inputElement.nativeElement.value = `${num}`
+  private fieldChange(num: number): void {
+    if (this.inputElement) this.inputElement.nativeElement.value = `${num}`
   }
 
   public onSubmit(): void {

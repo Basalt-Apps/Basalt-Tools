@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, computed, effect, OnInit, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} from "@angular/forms";
 import {ManaTrackerMaxManaForm} from "./models/mana-tracker-form.interface";
 import {ManaTrackerFormHelperService} from "./services/mana-tracker-form-helper.service";
-import {map, Observable} from "rxjs";
+import {map, max, Observable} from "rxjs";
 import {ManaCapacityByLevel, ManaMultiplierByBlessing} from "./models/mana-cap-by-level.record";
 import {ManaTrackerSpellSpecForm} from "./models/mana-tracker-spell-spec.form";
 import {SpellCostValidator} from "./validators/spell-cost.validator";
@@ -10,13 +10,15 @@ import {calculateSpellCost} from "./functions/calculate-spell-cost.func";
 import {RouterLink} from "@angular/router";
 import {publicPoolByLevel} from "./models/mana-tracker-public-pool";
 import { ControlsOf } from '../shared/models/controls-of.type';
+import {NumberInputComponent} from "../shared/components/number-input/number-input.component";
 
 @Component({
   selector: 'basalt-mana-tracker',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    NumberInputComponent
   ],
   templateUrl: './mana-tracker.component.html',
   styleUrl: './mana-tracker.component.scss'
@@ -25,6 +27,9 @@ export class ManaTrackerComponent implements OnInit {
   public maxManaForm!: FormGroup<ControlsOf<ManaTrackerMaxManaForm>>;
   public spellSpecForm!: FormGroup<ControlsOf<ManaTrackerSpellSpecForm>>;
   public addRemoveForm!: FormControl<number>;
+  public currentManaMaxSignal = signal<number | undefined>(undefined);
+  public blessingSignal = signal<ManaTrackerMaxManaForm['blessing']>('none')
+  public maxManaSignal = signal<number>(0)
 
   private maxManaOldValue!: ManaTrackerMaxManaForm;
   private spellSpecOldValue!: ManaTrackerSpellSpecForm;
@@ -32,6 +37,15 @@ export class ManaTrackerComponent implements OnInit {
   constructor(
     private formHelperService: ManaTrackerFormHelperService,
   ) {
+    effect(() => {
+      const blessing = this.blessingSignal();
+      if (blessing == 'gluttony') return this.currentManaMaxSignal.set(undefined);
+
+      const maxMana = this.maxManaSignal();
+      this.currentManaMaxSignal.set(maxMana);
+    }, {
+      allowSignalWrites: true
+    });
   }
 
   public ngOnInit(): void {
@@ -44,57 +58,31 @@ export class ManaTrackerComponent implements OnInit {
       ]
     })
 
+
+
     this.loadValuesFromLocalStorage();
 
-    this.maxManaForm.controls.maxMana.setValue(this.getMaxMana(this.maxManaForm.getRawValue()));
+    const maxMana = this.getMaxMana(this.maxManaForm.getRawValue());
+
+    this.maxManaForm.controls.maxMana.setValue(maxMana);
+    this.maxManaSignal.set(maxMana);
     this.spellSpecForm.setValidators(
       SpellCostValidator(this.maxManaForm.controls.currentMana.getRawValue()) as ValidatorFn
     )
     this.maxManaOldValue = this.maxManaForm.getRawValue();
     this.spellSpecOldValue = this.spellSpecForm.getRawValue();
     this.getMaxManaFormChanges().subscribe((changes: Partial<ManaTrackerMaxManaForm>) => {
-      if (changes.level !== undefined) {
-        const control = this.maxManaForm.controls.level;
-        const value = control.getRawValue() as number | null;
-
-        if (!value) {
-          control.setValue(1);
-          return this.recalculateMaxMana()
-        }
-        else if (value < 1 || value > 20) {
-          control.setValue(value < 1 ? 1 : value > 20 ? 20 : value);
-          return this.recalculateMaxMana()
-        }
-      }
-
-      if (changes.currentMana !== undefined) {
-        const control = this.maxManaForm.controls.currentMana;
-        const value = control.getRawValue() as number | null;
-
-        if (!value || value < 0) {
-          control.setValue(0);
-          return this.recalculateMaxMana()
-        }
-      }
-
-      if (changes.extraManaMax !== undefined) {
-        const control = this.maxManaForm.controls.extraManaMax;
-        let value = control.getRawValue() as number | null;
-
-        if (!value || value < 0) {
-          control.setValue(0);
-          return this.recalculateMaxMana()
-        }
-      }
-
       if (changes.level
         || changes.extraManaMax
         || changes.blessing
       ) this.recalculateMaxMana()
 
+      if (changes.blessing !== undefined) this.blessingSignal.set(changes.blessing);
+
       if (changes.maxMana !== undefined) {
         const control = this.maxManaForm.controls.currentMana;
         if (control.getRawValue() > changes.maxMana) control.setValue(changes.maxMana)
+        this.maxManaSignal.set(changes.maxMana);
       }
 
       if (changes.currentMana !== undefined) {

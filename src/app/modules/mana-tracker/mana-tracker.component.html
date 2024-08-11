@@ -17,7 +17,7 @@
       <div class="level-blessing">
         <div class="level">
           <label>Level</label>
-          <input formControlName="level" type="number" min="1" max="20" step="1">
+          <basalt-number-input formControlName="level" [min]="1" [max]="20" [step]="1"/>
         </div>
 
         <div class="blessing">
@@ -53,7 +53,7 @@
         </div>
         <div class="extra-mana">
           <label>Extra Mana Cap</label>
-          <input formControlName="extraManaMax" type="number" step="1" min="0">
+          <basalt-number-input formControlName="extraManaMax" [step]="1" [min]="0"/>
         </div>
       </div>
 
@@ -62,7 +62,7 @@
           <div class="current-display">
             <label>Current Mana</label>
             <span>
-            <input type="number" formControlName="currentMana">
+            <basalt-number-input type="number" formControlName="currentMana" [min]="0" [max]="currentManaMaxSignal()"/>
             / {{maxManaForm.controls.maxMana.value}}
               <span class="percent">
                 {{
@@ -83,7 +83,7 @@
     </form>
 
     <div class="row-4">
-      <input type="number" [formControl]="addRemoveForm"/>
+      <basalt-number-input [formControl]="addRemoveForm"/>
       <button (click)="addRemove(1)">Add</button>
       <button (click)="addRemove(-1)">Remove</button>
     </div>
@@ -96,24 +96,21 @@
           <label>Range (ft)</label>
         </div>
         <div class="spell-spec-col-2">
-          <input
+          <basalt-number-input
             [class.invalid]="spellSpecForm.controls.baseCostSum.invalid"
-            type="number"
             formControlName="baseCostSum"
-            step="1"
-            min="0">
-          <input
+            [step]="1"
+            [min]="0"/>
+          <basalt-number-input
             [class.invalid]="spellSpecForm.controls.patterns.invalid"
-            type="number"
             formControlName="patterns"
-            step="1"
-            min="1">
-          <input
+            [step]="1"
+            [min]="1"/>
+          <basalt-number-input
             [class.invalid]="spellSpecForm.controls.range.invalid"
-            type="number"
             formControlName="range"
-            step="1"
-            min="0">
+            [step]="1"
+            [min]="0"/>
         </div>
       </div>
       <div class="row-6">
