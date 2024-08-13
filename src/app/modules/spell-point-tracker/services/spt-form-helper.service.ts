@@ -21,7 +21,7 @@ export class SPTFormHelperService {
         nonNullable: true,
         validators: [
           Validators.required,
-          Validators.min(0),
+          Validators.min(4),
           Validators.max(999),
         ],
       }),
@@ -29,7 +29,7 @@ export class SPTFormHelperService {
         nonNullable: true,
         validators: [
           Validators.required,
-          Validators.min(0),
+          Validators.min(4),
           Validators.max(999),
         ],
       }),
