@@ -8,9 +8,8 @@ describe('ManaTrackerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManaTrackerComponent]
-    })
-    .compileComponents();
+      imports: [ManaTrackerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ManaTrackerComponent);
     component = fixture.componentInstance;

@@ -1,11 +1,11 @@
 <input
+  #inputElement
   (input)="input($event.target)"
   (keyup.enter)="onSubmit()"
-  [step]="step ?? 1"
-  [min]="min ?? null"
-  [max]="max ?? null"
   [disabled]="(disabled$ | async) ?? false"
+  [max]="max ?? null"
+  [min]="min ?? null"
+  [step]="step ?? 1"
   [value]="value$ | async"
   type="number"
-  #inputElement
 >

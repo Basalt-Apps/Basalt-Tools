@@ -8,9 +8,8 @@ describe('AppThumbnailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppThumbnailComponent]
-    })
-    .compileComponents();
+      imports: [AppThumbnailComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AppThumbnailComponent);
     component = fixture.componentInstance;

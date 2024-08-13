@@ -1,1 +1,12 @@
 <router-outlet/>
+
+<ng-container *ngIf="showOverlays()">
+  <div [routerLink]="['/']" class="back">
+    <img alt="" src="arrow-left.svg" title="Back">
+  </div>
+
+  <a class="help" href="https://github.com/Baastinator/baasti-tools/issues">
+    <img alt="" src="help.svg" title="Help">
+  </a>
+</ng-container>
+

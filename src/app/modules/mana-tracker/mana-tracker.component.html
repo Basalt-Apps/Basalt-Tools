@@ -1,45 +1,37 @@
 <div class="title">
-  <img src="mana-tracker-title.gif" alt="">
+  <img alt="" src="mana-tracker-title.gif">
 </div>
 
-<div [routerLink]="['/']" class="back">
-  <img src="arrow-left.svg" alt="" title="Back">
-</div>
-
-<a href="mailto:kring.basti.2004@gmail.com" class="help">
-  <img src="help.svg" alt="" title="Help">
-</a>
-
-<div class="main" [style.background-image]="'url(\'dnd-background.jpg\')'">
-  <div class="super-form" [style.background-image]="'url(\'parchment.jpg\')'">
+<div [style.background-image]="'url(\'dnd-background.jpg\')'" class="main">
+  <div [style.background-image]="'url(\'parchment.jpg\')'" class="super-form">
     <form [formGroup]="maxManaForm">
 
       <div class="level-blessing">
         <div class="level">
           <label>Level</label>
-          <basalt-number-input formControlName="level" [min]="1" [max]="20" [step]="1"/>
+          <basalt-number-input [max]="20" [min]="1" [step]="1" formControlName="level"/>
         </div>
 
         <div class="blessing">
           Blessing
           <div class="blessings">
             <label><input
-              type="radio"
-              name="blessing"
-              formControlName="blessing"
-              value="none"
               checked
+              formControlName="blessing"
+              name="blessing"
+              type="radio"
+              value="none"
             >None Apply</label>
             <label><input
-              type="radio"
-              name="blessing"
               formControlName="blessing"
+              name="blessing"
+              type="radio"
               value="greed"
             >Greed</label>
             <label><input
-              type="radio"
-              name="blessing"
               formControlName="blessing"
+              name="blessing"
+              type="radio"
               value="gluttony"
             >Gluttony</label>
           </div>
@@ -49,11 +41,11 @@
       <div class="row-2">
         <div class="max-mana">
           <label>Total Max Mana</label>
-          <div class="display">{{maxManaForm.value.maxMana}}</div>
+          <div class="display">{{ maxManaForm.value.maxMana }}</div>
         </div>
         <div class="extra-mana">
           <label>Extra Mana Cap</label>
-          <basalt-number-input formControlName="extraManaMax" [step]="1" [min]="0"/>
+          <basalt-number-input [min]="0" [step]="1" formControlName="extraManaMax"/>
         </div>
       </div>
 
@@ -62,12 +54,12 @@
           <div class="current-display">
             <label>Current Mana</label>
             <span>
-            <basalt-number-input type="number" formControlName="currentMana" [min]="0" [max]="currentManaMaxSignal()"/>
-            / {{maxManaForm.controls.maxMana.value}}
+            <basalt-number-input [max]="currentManaMaxSignal()" [min]="0" formControlName="currentMana" type="number"/>
+            / {{ maxManaForm.controls.maxMana.value }}
               <span class="percent">
                 {{
-                Math.floor(100 * maxManaForm.controls.currentMana.value
-                  / maxManaForm.controls.maxMana.value)
+                  Math.floor(100 * maxManaForm.controls.currentMana.value
+                    / maxManaForm.controls.maxMana.value)
                 }}%
               </span>
           </span>
@@ -98,19 +90,19 @@
         <div class="spell-spec-col-2">
           <basalt-number-input
             [class.invalid]="spellSpecForm.controls.baseCostSum.invalid"
-            formControlName="baseCostSum"
+            [min]="0"
             [step]="1"
-            [min]="0"/>
+            formControlName="baseCostSum"/>
           <basalt-number-input
             [class.invalid]="spellSpecForm.controls.patterns.invalid"
-            formControlName="patterns"
+            [min]="1"
             [step]="1"
-            [min]="1"/>
+            formControlName="patterns"/>
           <basalt-number-input
             [class.invalid]="spellSpecForm.controls.range.invalid"
-            formControlName="range"
+            [min]="0"
             [step]="1"
-            [min]="0"/>
+            formControlName="range"/>
         </div>
       </div>
       <div class="row-6">
@@ -118,7 +110,7 @@
           <span>Cost: </span>
           <span
             [style.color]="spellSpecForm.errors?.['tooMuch'] ? 'red' : 'black'"
-          >{{spellSpecForm.controls.cost.value}}</span>
+          >{{ spellSpecForm.controls.cost.value }}</span>
         </div>
         <button (click)="onCastSpell()">Cast Spell</button>
       </div>

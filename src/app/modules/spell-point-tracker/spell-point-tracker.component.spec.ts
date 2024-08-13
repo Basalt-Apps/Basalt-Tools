@@ -8,9 +8,8 @@ describe('SpellPointTrackerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SpellPointTrackerComponent]
-    })
-    .compileComponents();
+      imports: [SpellPointTrackerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SpellPointTrackerComponent);
     component = fixture.componentInstance;

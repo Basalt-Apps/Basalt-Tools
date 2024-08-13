@@ -1,4 +1,12 @@
-input {
-  width: inherit;
-  height: inherit;
+:host {
+  display: block;
+  height: 25px;
+  font-family: inherit;
+
+  input {
+    width: inherit;
+    height: inherit;
+    font-size: 14px;
+    font-family: inherit;
+  }
 }

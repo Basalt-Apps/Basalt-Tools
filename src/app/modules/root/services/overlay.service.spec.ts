@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ManaTrackerService } from './mana-tracker.service';
+import { OverlayService } from './overlay.service';
 
-describe('ManaTrackerService', () => {
-  let service: ManaTrackerService;
+describe('OverlayService', () => {
+  let service: OverlayService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ManaTrackerService);
+    service = TestBed.inject(OverlayService);
   });
 
   it('should be created', () => {

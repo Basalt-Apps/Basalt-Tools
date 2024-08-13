@@ -1,10 +1,11 @@
 <div class="main">
-  <div class="img"
-       [style.background-image]="'url(\'' + app.background + '\')'"
+  <div [style.background-image]="'url(\'' + app.background + '\')'"
+       class="img"
   >
     <img [src]="app.image" alt="">
   </div>
   <div class="content">
-    {{app.title}}
+    {{ app.title }}
   </div>
 </div>
+

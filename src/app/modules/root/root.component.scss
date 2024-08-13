@@ -7,4 +7,28 @@
     width: 100vw;
     height: 100vh;
   }
+
+  .back {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+
+  .help {
+    position: absolute;
+    top: calc(3 * 24px);
+    left: 24px;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
+

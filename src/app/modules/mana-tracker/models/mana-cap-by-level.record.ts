@@ -1,4 +1,4 @@
-import {ManaTrackerMaxManaForm} from "./mana-tracker-form.interface";
+import { ManaTrackerMaxManaForm } from './mana-tracker-form.interface';
 
 export const ManaCapacityByLevel: Record<number, number> = {
   1: 1000,
@@ -20,12 +20,14 @@ export const ManaCapacityByLevel: Record<number, number> = {
   17: 9800,
   18: 10800,
   19: 11800,
-  20: 12800
-}
+  20: 12800,
+};
 
-export const ManaMultiplierByBlessing: Record<ManaTrackerMaxManaForm['blessing'], number> = {
+export const ManaMultiplierByBlessing: Record<
+  ManaTrackerMaxManaForm['blessing'],
+  number
+> = {
   gluttony: 0.5,
   greed: 2,
-  none: 1
-}
-
+  none: 1,
+};
