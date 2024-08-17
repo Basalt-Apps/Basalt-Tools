@@ -84,7 +84,6 @@
       <div class="row-5">
         <div class="spell-spec-col-1">
           <label>Base Cost Sum</label>
-          <label>Interacting Patterns</label>
           <label>Range (ft)</label>
         </div>
         <div class="spell-spec-col-2">
@@ -93,11 +92,6 @@
             [min]="0"
             [step]="1"
             formControlName="baseCostSum"/>
-          <basalt-number-input
-            [class.invalid]="spellSpecForm.controls.patterns.invalid"
-            [min]="1"
-            [step]="1"
-            formControlName="patterns"/>
           <basalt-number-input
             [class.invalid]="spellSpecForm.controls.range.invalid"
             [min]="0"
