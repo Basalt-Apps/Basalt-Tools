@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "BaastiTools": {
+    "BasaltTools": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/baasti-tools",
+            "outputPath": "dist/basalt-tools",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "BaastiTools:build:production"
+              "buildTarget": "BasaltTools:build:production"
             },
             "development": {
-              "buildTarget": "BaastiTools:build:development"
+              "buildTarget": "BasaltTools:build:development"
             }
           },
           "defaultConfiguration": "development"
